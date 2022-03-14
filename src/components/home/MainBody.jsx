@@ -1,10 +1,17 @@
-import React from "react";
+import React,{ useState, useEffect } from "react";
 import Typist from "react-typist";
+import InfTypist from "./Type";
 import Container from "react-bootstrap/Container";
 import Jumbotron from "react-bootstrap/Jumbotron";
 
 const MainBody = React.forwardRef(
   ({ gradient, title, message, icons }, ref) => {
+    const [count, setCount] = useState(1);
+    useEffect(() => {
+      // document.title = `You clicked ${count} times`;
+      console.log("Count: " + count);
+      setCount(1);
+    }, [count]);
     return (
       <Jumbotron
         fluid

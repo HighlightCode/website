@@ -1,14 +1,17 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import {
   navBar,
+  splashScreen,
   mainBody,
   about,
   repos,
   leadership,
   skills,
+  bigProjects,
   getInTouch,
-  experiences
+  experiences,
+  achievementSection
 } from "./editable-stuff/config.js";
 import MainBody from "./components/home/MainBody";
 import AboutMe from "./components/home/AboutMe";
@@ -22,8 +25,26 @@ import GetInTouch from "./components/home/GetInTouch.jsx";
 import Leadership from "./components/home/Leadership.jsx";
 
 import Experience from "./components/home/Experience";
+import StartupProject from "./components/home/StartupProject";
+import Achievement from "./components/home/Certification";
+import SplashScreen from "./components/home/SplahScreen.jsx";
 
 const Home = React.forwardRef((props, ref) => {
+  const [isShowingSplashAnimation, setIsShowingSplashAnimation] =
+    useState(true);
+
+  useEffect(() => {
+    if (splashScreen.enabled) {
+      const splashTimer = setTimeout(
+        () => setIsShowingSplashAnimation(false),
+        splashScreen.duration
+      );
+      return () => {
+        clearTimeout(splashTimer);
+      };
+    }
+  }, []);
+
   return (
     <>
       <MainBody
@@ -55,6 +76,11 @@ const Home = React.forwardRef((props, ref) => {
           specfic={repos.specificRepos}
         />
       )}
+      {
+        bigProjects.show && (
+          <StartupProject bigProjects={bigProjects}/>
+        )
+      }
       {leadership.show && (
         <Leadership
           heading={leadership.heading}
@@ -70,7 +96,11 @@ const Home = React.forwardRef((props, ref) => {
           softSkills={skills.softSkills}
         />
       )}
-      
+      {achievementSection.show && (
+        <Achievement
+            achievementSection={achievementSection}
+        />
+      )}
     </>
   );
 });
@@ -78,22 +108,43 @@ const Home = React.forwardRef((props, ref) => {
 const App = () => {
   const titleRef = React.useRef();
 
+  const [isShowingSplashAnimation, setIsShowingSplashAnimation] =
+    useState(true);
+
+  useEffect(() => {
+    if (splashScreen.enabled) {
+      const splashTimer = setTimeout(
+        () => setIsShowingSplashAnimation(false),
+        splashScreen.duration
+      );
+      return () => {
+        clearTimeout(splashTimer);
+      };
+    }
+  }, []);
+
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL + "/"}>
-      {navBar.show && <Navbar ref={titleRef} />}
-      <Route path="/" exact component={() => <Home ref={titleRef} />} />
-      {/* {false && <Route path="/blog" exact component={Blog} />}
-      {false && <Route path="/blog/:id" component={BlogPost} />} */}
-      <Footer>
-        {getInTouch.show && (
-          <GetInTouch
-            heading={getInTouch.heading}
-            message={getInTouch.message}
-            email={getInTouch.email}
-          />
-        )}
-      </Footer>
-    </BrowserRouter>
+    <>
+    {isShowingSplashAnimation ? (
+      <SplashScreen />
+    ) : (
+      <BrowserRouter basename={process.env.PUBLIC_URL + "/"}>
+        {navBar.show && <Navbar ref={titleRef} />}
+        <Route path="/" exact component={() => <Home ref={titleRef} />} />
+        {/* {false && <Route path="/blog" exact component={Blog} />}
+        {false && <Route path="/blog/:id" component={BlogPost} />} */}
+        <Footer>
+          {getInTouch.show && (
+            <GetInTouch
+              heading={getInTouch.heading}
+              message={getInTouch.message}
+              email={getInTouch.email}
+            />
+          )}
+        </Footer>
+      </BrowserRouter>
+    )}
+    </>
   );
 };
 

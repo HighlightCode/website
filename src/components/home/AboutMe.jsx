@@ -34,22 +34,10 @@ const AboutMe = ({ heading, message, link, imgSize, resume }) => {
   return (
     <div id="aboutme" className="jumbotron jumbotron-fluid m-0">
       <div className="container container-fluid">
-        <div className="row">
-          <div className="col-5 d-none d-lg-block align-self-center">
-            {showPic && (
-              <img
-                className="border border-secondary rounded-circle"
-                src={profilePicUrl}
-                alt="profilepicture"
-                width={imgSize}
-                height={imgSize}
-              />
-            )}
-          </div>
 
-          <div className={`col-lg-${showPic ? "7" : "12"}`}>
             <h2 className="display-4 mb-5 text-center">{heading}</h2>
             <p className="lead text-center">{message}</p>
+            <br></br>
             {resume && (
               <p className="lead text-center">
                 <a
@@ -66,8 +54,6 @@ const AboutMe = ({ heading, message, link, imgSize, resume }) => {
             )}
           </div>
         </div>
-      </div>
-    </div>
   );
 };
 

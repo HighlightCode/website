@@ -10,7 +10,8 @@
     "url": "https://github.com/hashirshoaeb"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "ansi-regex": "^6.0.1",
+    "axios": "^0.26.1",
     "bootstrap": "^4.5.2",
     "gh-pages": "^2.2.0",
     "jquery": "^3.5.1",
@@ -20,10 +21,17 @@
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.14.0",
     "react-loading-skeleton": "^2.1.1",
+    "react-lottie": "^1.2.3",
+    "react-modal": "^3.14.4",
+    "react-modal-slideshow": "^1.0.5",
+    "react-reveal": "^1.2.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.4",
+    "react-slideshow-image": "^3.7.0",
+    "react-typewriter-effect": "^1.1.0",
     "react-typist": "^2.0.5",
+    "react-typist-loop": "^1.0.0",
     "typescript": "^3.9.7"
   },
   "scripts": {

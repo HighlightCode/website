@@ -1,4 +1,5 @@
 import React from 'react';
+import "./ExperienceCard.scss";
 
 import { 
     Col,
@@ -6,17 +7,35 @@ import {
  } from "react-bootstrap";
 const ExperienceCard = ({data}) => {
     return ( 
-        <Col lg="6">
-            <div className="pb-5 text-center">
-                <img className=" bg-white mb-3" src={data.companylogo} alt=""/>
-                <p className="lead">
-                    {data.role}
-                    <br/>
-                    {data.date}
-                </p>
-                
+        <div class="card card-gap">
+            <div class="card-content">
+                <div class="card-media">
+                    <div class="media-left">
+                        <figure class="image is-48x48">
+                            <img src={data.companylogo} alt="Placeholder image"/>
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <p class="card-title is-4">{data.company_name}</p>
+                        <p class="subtitle is-6">{data.date}</p>
+                    </div>
+                </div>
+                <div class="content">
+                    <p><b>{data.mainwork}</b></p>
+                    <ul>
+                        <li>{data.content.one}</li>
+                        <li>{data.content.two}</li>
+                        <li>{data.content.three}</li>
+                    </ul>
+                    <div class="tags">
+                    <span class="tag">{data.tag.one}</span>
+                    <span class="tag">{data.tag.two}</span>
+                    <span class="tag">{data.tag.three}</span>
+                    <span class="tag">{data.tag.four}</span>
+                    </div>
+                </div>
             </div>
-        </Col>
+        </div>
      );
 }
  
